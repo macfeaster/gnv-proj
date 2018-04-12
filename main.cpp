@@ -20,6 +20,7 @@ float base = 0.15;
 
 void init()
 {
+	srand(time(NULL));
 	glShadeModel(GL_SMOOTH);
 	glEnable(GL_DEPTH_TEST);
 }
@@ -54,6 +55,7 @@ void stepSystem(float height) {
 	makeaTree = glGenLists(1);
 	glNewList(makeaTree, GL_COMPILE);
 
+	srand(1);
 	makeTree(height, base);
 
 	glEndList();
