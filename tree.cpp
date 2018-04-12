@@ -5,13 +5,13 @@
 
 #include <GLUT/glut.h>
 #include <cstdlib>
+#include <iostream>
 #include "tree.h"
 #include "branch.h"
 #include "leaf.h"
 
-void makeTree(float height, float base){
-
-	float angle;
+void makeTree(double height, double base) {
+	double angle;
 	makeBranch(height, base);
 	glTranslatef(0.0, height, 0.0);
 	height -= height * .2;
@@ -23,7 +23,7 @@ void makeTree(float height, float base){
 		if (angle > 48)
 			angle = -(rand() % 50 + 20);
 
-		if (height >1){
+		if (height > 1) {
 			glPushMatrix();
 			glRotatef(angle, 1, 0.0, 1);
 			makeTree(height, base);

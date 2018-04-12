@@ -15,19 +15,18 @@
 using namespace std;
 
 GLuint makeaTree;
+float height = 0.5;
+float base = 0.15;
 
 void init()
 {
-	glClearColor(1.0,1.0,1.0,1.0);
 	glShadeModel(GL_SMOOTH);
 	glEnable(GL_DEPTH_TEST);
-	makeaTree=glGenLists(1);
-	glNewList(makeaTree, GL_COMPILE);
-	makeTree(4,0.2);
-	glEndList();
 }
 
 void display(){
+	glClearColor(1.0,1.0,1.0,1.0);
+	glClearDepth(10);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPushMatrix();
 	glRotatef(0.0, 1.0, 0.0, 0.0);
@@ -37,6 +36,7 @@ void display(){
 
 	glPopMatrix();
 	glutSwapBuffers();
+	glutPostRedisplay();
 }
 
 void reshape(int w, int h)
@@ -50,6 +50,24 @@ void reshape(int w, int h)
 	glTranslatef(0.0, -8.0, -50.0);
 }
 
+void stepSystem(float height) {
+	makeaTree = glGenLists(1);
+	glNewList(makeaTree, GL_COMPILE);
+
+	makeTree(height, base);
+
+	glEndList();
+}
+
+void timerFunc(int t)
+{
+	stepSystem(height);
+	height += 0.008;
+	base += 0.00025;
+
+	glutTimerFunc(t, &timerFunc, t);
+}
+
 int main(int argc, char **argv)
 {
 	glutInit(&argc, argv);
@@ -61,6 +79,10 @@ int main(int argc, char **argv)
 	glutReshapeFunc(reshape);
 
 	glutDisplayFunc(display);
+
+	// Trigger timerFunc every 20 msec
+	stepSystem(height);
+	glutTimerFunc(20, timerFunc, 20);
 	glutMainLoop();
 	return 0;
 }
