@@ -1,5 +1,6 @@
 //
-// Created by Mauritz Zachrisson on 4/12/18.
+// 50.017 Graphics and Visualization Project
+// Janine Liao and Mauritz Zachrisson
 //
 
 #ifndef PROJECT_TREE_H

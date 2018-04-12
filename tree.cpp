@@ -1,25 +1,18 @@
 //
-// Created by Mauritz Zachrisson on 4/12/18.
+// 50.017 Graphics and Visualization Project
+// Janine Liao and Mauritz Zachrisson
 //
 
 #include <GLUT/glut.h>
 #include <cstdlib>
 #include "tree.h"
-
-void makeCylinder(float height, float base){
-	GLUquadric *obj = gluNewQuadric();
-	glColor3f(0.64f, 0.16, 0.16f);
-	glPushMatrix();
-	glRotatef(-90, 1.0, 0.0, 0.0);
-	gluCylinder(obj, base, base - (0.2 * base), height, 20, 20);
-	glPopMatrix();
-	glutSwapBuffers();
-}
+#include "branch.h"
+#include "leaf.h"
 
 void makeTree(float height, float base){
 
 	float angle;
-	makeCylinder(height, base);
+	makeBranch(height, base);
 	glTranslatef(0.0, height, 0.0);
 	height -= height * .2;
 	base-= base * 0.3;
@@ -36,6 +29,8 @@ void makeTree(float height, float base){
 			makeTree(height, base);
 			glPopMatrix();
 
+		} else {
+			makeLeaf(height, base);
 		}
 	}
 

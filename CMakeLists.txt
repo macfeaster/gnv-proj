@@ -5,7 +5,8 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_executable(project
         main.cpp
-        tree.cpp)
+        tree.cpp
+        branch.cpp leaf.cpp leaf.h)
 
 INCLUDE_DIRECTORIES (/System/Library/Frameworks)
 find_library(COCOA_LIBRARY Cocoa)

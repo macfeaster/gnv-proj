@@ -1,12 +1,18 @@
+//
+// 50.017 Graphics and Visualization Project
+// Janine Liao and Mauritz Zachrisson
+//
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <float.h>
 #include <math.h>
 #include <time.h>
 #include <iostream>
-using namespace std;
 #include <GLUT/glut.h>
 #include "tree.h"
+
+using namespace std;
 
 GLuint makeaTree;
 
