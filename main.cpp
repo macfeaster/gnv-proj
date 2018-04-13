@@ -17,12 +17,13 @@ using namespace std;
 GLuint makeaTree;
 float height = 0.5;
 float base = 0.15;
+int iterations = 0;
 
 void init()
 {
 	srand(time(NULL));
 	glShadeModel(GL_SMOOTH);
-	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST | GL_DEPTH | GL_LIGHTING);
 }
 
 void display(){
@@ -55,8 +56,7 @@ void stepSystem(float height) {
 	makeaTree = glGenLists(1);
 	glNewList(makeaTree, GL_COMPILE);
 
-	srand(1);
-	makeTree(height, base);
+	makeTree(height, base, 1, 8);
 
 	glEndList();
 }
@@ -67,7 +67,11 @@ void timerFunc(int t)
 	height += 0.008;
 	base += 0.00025;
 
-	glutTimerFunc(t, &timerFunc, t);
+	iterations++;
+
+	// After 500 size increases, we've reached our target tree size
+	if (iterations < 500)
+		glutTimerFunc(t, &timerFunc, t);
 }
 
 int main(int argc, char **argv)

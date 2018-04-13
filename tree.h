@@ -6,6 +6,6 @@
 #ifndef PROJECT_TREE_H
 #define PROJECT_TREE_H
 
-void makeTree(double height, double base);
+void makeTree(double height, double diameter, int alpha, int depth);
 
 #endif //PROJECT_TREE_H
