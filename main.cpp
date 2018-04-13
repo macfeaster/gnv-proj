@@ -74,19 +74,33 @@ void timerFunc(int t)
 
 int main(int argc, char **argv)
 {
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	glutInitWindowSize(900, 600);
-	glutInitWindowPosition(0, 0);
-	glutCreateWindow("50.017 GnV Project");
-	init();
-	glutReshapeFunc(reshape);
-
-	glutDisplayFunc(display);
-
-	// Trigger timerFunc every 20 msec
-	stepSystem(height);
-	glutTimerFunc(20, timerFunc, 20);
-	glutMainLoop();
-	return 0;
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+    glutInitWindowSize(900, 600);
+    glutInitWindowPosition(0, 0);
+    glutCreateWindow("50.017 GnV Project");
+    init();
+    glutReshapeFunc(reshape);
+    glutDisplayFunc(display);
+    
+    // Depth and Lighting
+    glEnable(GL_DEPTH_TEST);
+    glLoadIdentity();
+    
+    GLfloat lightPos[] = {0.0, 0.0, 15.0};
+    GLfloat greenColor[] = {0.42, 0.56, 0.14};
+    
+    glEnable(GL_LIGHTING);
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT,greenColor);
+    glEnable(GL_LIGHT0);
+    glLightfv(GL_LIGHT0,GL_POSITION,lightPos);
+    glLightfv(GL_LIGHT0,GL_AMBIENT,greenColor);
+    glLightfv(GL_LIGHT0,GL_DIFFUSE,greenColor);
+    glLightfv(GL_LIGHT0,GL_SPECULAR,greenColor);
+    
+    // Trigger timerFunc every 20 msec
+    stepSystem(height);
+    glutTimerFunc(20, timerFunc, 20);
+    glutMainLoop();
+    return 0;
 }
