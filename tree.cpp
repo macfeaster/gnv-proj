@@ -4,10 +4,8 @@
 //
 
 #include <GLUT/glut.h>
-#include <iostream>
 #include "tree.h"
 #include "branch.h"
-#include "leaf.h"
 
 void makeTree(double height, double diameter, int alpha, int depth) {
 	makeBranch(height, diameter);
@@ -29,8 +27,6 @@ void makeTree(double height, double diameter, int alpha, int depth) {
 			makeTree(height, diameter, a, depth - 1);
 			glPopMatrix();
 
-		} else {
-			makeLeaf(height, diameter);
 		}
 	}
 

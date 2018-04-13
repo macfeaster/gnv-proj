@@ -3,30 +3,28 @@
 // Janine Liao and Mauritz Zachrisson
 //
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <float.h>
-#include <math.h>
-#include <time.h>
-#include <iostream>
 #include <GLUT/glut.h>
 #include "tree.h"
 
 using namespace std;
 
-GLuint makeaTree;
+GLuint cmdList;
 float height = 0.5;
 float base = 0.15;
 int iterations = 0;
 
+// Most of this file is just OpenGL boilerplate cobbled together
+// from the assignments as well as StackOverflow.
+// See tree.cpp for the actual recursive tree code.
+
 void init()
 {
-	srand(time(NULL));
 	glShadeModel(GL_SMOOTH);
 	glEnable(GL_DEPTH_TEST | GL_DEPTH | GL_LIGHTING);
 }
 
-void display(){
+void display()
+{
 	glClearColor(1.0,1.0,1.0,1.0);
 	glClearDepth(10);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -34,7 +32,7 @@ void display(){
 	glRotatef(0.0, 1.0, 0.0, 0.0);
 	glRotatef(0.0, 0.0, 1.0, 0.0);
 	glRotatef(0.0, 0.0, 0.0, 1.0);
-	glCallList(makeaTree);
+	glCallList(cmdList);
 
 	glPopMatrix();
 	glutSwapBuffers();
@@ -49,12 +47,12 @@ void reshape(int w, int h)
 	gluPerspective(30.0, (GLfloat) w / (GLfloat) h, 0.001, 1000.0);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	glTranslatef(0.0, -8.0, -50.0);
+	glTranslatef(0, -8.0f, -50.0f);
 }
 
 void stepSystem(float height) {
-	makeaTree = glGenLists(1);
-	glNewList(makeaTree, GL_COMPILE);
+	cmdList = glGenLists(1);
+	glNewList(cmdList, GL_COMPILE);
 
 	makeTree(height, base, 1, 8);
 
