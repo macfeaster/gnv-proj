@@ -10,7 +10,7 @@ using namespace std;
 
 GLuint cmdList;
 float height = 0.5;
-float base = 0.15;
+float base = 1.25;
 int iterations = 0;
 
 // Most of this file is just OpenGL boilerplate cobbled together
@@ -25,7 +25,7 @@ void init()
 
 void display()
 {
-	glClearColor(1.0,1.0,1.0,1.0);
+	glClearColor(0.82,0.71,0.55,1.0);
 	glClearDepth(10);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPushMatrix();
