@@ -8,7 +8,7 @@
 
 void makeBranch(float height, float base){
 	GLUquadric *obj = gluNewQuadric();
-	glColor3f(0.64f, 0.16, 0.16f);
+	glColor3f(.64f, .16f, .16f);
 	glPushMatrix();
 	glRotatef(-90, 1.0, 0.0, 0.0);
 	gluCylinder(obj, base, base - (0.2 * base), height, 4, 4);

@@ -20,6 +20,9 @@ void makeTree(double height, double diameter, int alpha, int depth) {
 		if (angle > 48 || alpha % 2 == 0)
 			angle = -((alpha * depth * a) % 50 + 20);
 
+		if (depth == 8)
+			angle = 15;
+
 		if (depth > 0 && height > .25) {
 
 			glPushMatrix();

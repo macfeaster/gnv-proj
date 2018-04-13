@@ -25,7 +25,7 @@ void init()
 
 void display()
 {
-	glClearColor(0.82,0.71,0.55,1.0);
+	glClearColor(.91, 1.0, .98, 1.0);
 	glClearDepth(10);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPushMatrix();
