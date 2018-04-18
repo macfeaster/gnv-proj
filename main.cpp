@@ -1,21 +1,17 @@
 //
 // 50.017 Graphics and Visualization Project
-// Janine Liao and Mauritz Zachrisson
+// Ruoyuan Liao and Mauritz Zachrisson
 //
 
 #include <GLUT/glut.h>
-#include "tree.h"
+#include "broccoli.h"
 
 using namespace std;
 
 GLuint cmdList;
 float height = 0.5;
-float base = 1.25;
+float base = 1.0;
 int iterations = 0;
-
-// Most of this file is just OpenGL boilerplate cobbled together
-// from the assignments as well as StackOverflow.
-// See tree.cpp for the actual recursive tree code.
 
 void init()
 {
@@ -25,7 +21,7 @@ void init()
 
 void display()
 {
-	glClearColor(.91, 1.0, .98, 1.0);
+	glClearColor(1.0, 1.0, 1.0, 1.0);
 	glClearDepth(10);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPushMatrix();
@@ -41,10 +37,10 @@ void display()
 
 void reshape(int w, int h)
 {
-	glViewport (0, 0, (GLsizei) w, (GLsizei) h);
+	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(30.0, (GLfloat) w / (GLfloat) h, 0.001, 1000.0);
+	gluPerspective(30.0, (GLfloat)w/(GLfloat)h, 0.001, 1000.0);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glTranslatef(0, -8.0f, -50.0f);
@@ -54,7 +50,7 @@ void stepSystem(float height) {
 	cmdList = glGenLists(1);
 	glNewList(cmdList, GL_COMPILE);
 
-	makeTree(height, base, 1, 8);
+	makeBroccoli(height, base, 1, 8);
 
 	glEndList();
 }
@@ -67,7 +63,7 @@ void timerFunc(int t)
 
 	iterations++;
 
-	// After 500 size increases, we've reached our target tree size
+	// After 500 size increases, we've reached our target broccoli size
 	if (iterations < 500)
 		glutTimerFunc(t, &timerFunc, t);
 }

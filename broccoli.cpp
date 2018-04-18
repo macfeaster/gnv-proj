@@ -1,18 +1,18 @@
 //
 // 50.017 Graphics and Visualization Project
-// Janine Liao and Mauritz Zachrisson
+// Ruoyuan Liao and Mauritz Zachrisson
 //
 
 #include <GLUT/glut.h>
-#include "tree.h"
-#include "branch.h"
+#include "broccoli.h"
+#include "head.h"
 
-void makeTree(double height, double diameter, int alpha, int depth) {
-	makeBranch(height, diameter);
+void makeBroccoli(double height, double diameter, int alpha, int depth) {
+	makeHead(height, diameter);
 
 	glTranslatef(0.0, height, 0.0);
-	height -= height * .25;
-	diameter -= diameter * .25;
+	height -= height * 0.25;
+	diameter -= diameter * 0.25;
 
 	for (int a = 0; a < 3; a++) {
 		int angle = (alpha * depth * a) % 50 + 20;
@@ -27,7 +27,7 @@ void makeTree(double height, double diameter, int alpha, int depth) {
 
 			glPushMatrix();
 			glRotatef(angle, 1, 0, 1);
-			makeTree(height, diameter, a, depth - 1);
+			makeBroccoli(height, diameter, a, depth - 1);
 			glPopMatrix();
 
 		}
